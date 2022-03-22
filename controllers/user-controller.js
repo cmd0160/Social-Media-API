@@ -8,6 +8,10 @@ const userController = {
         path: "thoughts",
         select: "-__v",
       })
+      .populate({
+        path: 'friends',
+        select: '-__v'
+    })
       .select("-__v")
       .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
@@ -25,6 +29,10 @@ const userController = {
         path: "thoughts",
         select: "-__v",
       })
+      .populate({
+        path: 'friends',
+        select: '-__v'
+    })
       .select("-__v")
       .then((dbUserData) => {
         if (!dbUserData) {
@@ -71,7 +79,7 @@ const userController = {
           res.status(404).json({ message: "No User found with this id!" });
           return;
         }
-        res.json(dbUserData);
+        res.json({ message: "User and associated thoughts deleted."});
       })
       .catch((err) => res.status(400).json(err));
   },
