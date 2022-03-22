@@ -10,20 +10,20 @@ const {
 } = require("../../controllers/thought-controller");
 
 router
-.route("/")
+.route('/:userId')
 .get(getAllThoughts)
 .post(createThought)
 
 // /:thoughtsId
 router
-.route("/:thoughtsId")
+.route("/:userId/:thoughtsId")
 .put(getThoughtById)
 .put(updateThought)
 .delete(deleteThought);
 
 // /:thoughtsId/reactions
 router
-.route("/:thoughtId/reactions")
+.route("/:userId/:thoughtsId/reactions")
 .post(addReaction)
 .delete(removeReaction);
 

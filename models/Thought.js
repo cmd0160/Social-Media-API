@@ -31,22 +31,22 @@ const ReactionSchema = new Schema(
 
 const ThoughtSchema = new Schema(
   {
+    username: {
+      type: String,
+      required: true,
+    },
     thoughtText: {
       type: String,
       required: true,
       maxLength: 280,
     },
+    // use ReactionSchema to validate data for a Reaction
+    reactions: [ReactionSchema],
     createdAt: {
       type: Date,
       default: Date.now,
       //   get: createdAtVal => dateFormat(createdAtVal)
-    },
-    username: {
-      type: String,
-      required: true,
-    },
-    // use ReactionSchema to validate data for a Reaction
-    reactions: [ReactionSchema],
+    }
   },
   {
     toJSON: {
@@ -61,6 +61,6 @@ ThoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-const Thought = model("thought", ThoughtSchema);
+const Thought = model("Thought", ThoughtSchema);
 
 module.exports = Thought;
