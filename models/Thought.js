@@ -7,19 +7,19 @@ const ReactionSchema = new Schema(
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
+    username: {
+      type: String,
+      required: true,
+    },
     reactionBody: {
       type: String,
       required: true,
       maxLength: 280,
     },
-    username: {
-      type: String,
-      required: true,
-    },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => dateFormat(createdAtVal),
+      // get: (createdAtVal) => dateFormat(createdAtVal),
     },
   },
   {
@@ -40,7 +40,6 @@ const ThoughtSchema = new Schema(
       required: true,
       maxLength: 280,
     },
-    // use ReactionSchema to validate data for a Reaction
     reactions: [ReactionSchema],
     createdAt: {
       type: Date,
