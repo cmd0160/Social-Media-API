@@ -88,7 +88,7 @@ const userController = {
     console.log(params)
     User.findByIdAndUpdate(
       params.id,
-      { $push: { friends: params.friendsId } },
+      { $push: { friends: params.friendId } },
       { new: true }
     )
       .then(dbUserData => {
@@ -104,7 +104,7 @@ const userController = {
 removeFriend({ params }, res) {
   User.findByIdAndUpdate(
       params.id,
-      { $pull: { friends: params.friendsId } },
+      { $pull: { friends: params.friendId } },
       { new: true }
     )
       .then(dbUserData => {
